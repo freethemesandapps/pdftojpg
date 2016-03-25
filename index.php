@@ -91,7 +91,10 @@ unlink($dir.$pdf_file);
     <div class="row">
 
         <div class="col-lg-12">
-            <h1 class="page-header">PDF to JPG
+            <h1 class="page-header"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> <br>
+                                    PDF to JPG
                 <small>Convert your file right now!</small>
             </h1>
             <ol class="breadcrumb">
