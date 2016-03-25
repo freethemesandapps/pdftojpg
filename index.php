@@ -4,6 +4,17 @@
 $pdf_file   = 'image.pdf';
 $dir = 'images/';
 
+/********* DELETE ALL IMAGES AFTER FEW MINUTES **********/
+$files = glob($dir.'*');
+
+foreach($files as $file) { // iterate files
+    // if file creation time is more than 2 minutes
+    if ((time() - filectime($file)) > 120) {  
+        unlink($file);
+    }
+}
+
+
 if(isset($_POST["submit"])) {
 $target_file = basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -48,7 +59,7 @@ for($i=0;$i<$pages;$i++)
 
 
 }
-
+//Delete Original PDF File
 unlink($dir.$pdf_file);
 //unlink($save_to);
 
@@ -65,15 +76,4 @@ unlink($dir.$pdf_file);
     <input type="submit" value="Upload PDF" name="submit">
 </form>
 <?php
-/********* Delete All Files After 1 Minute **********/
-/*
-$files = glob('images/*');
-
-foreach($files as $file) { // iterate files
-    // if file creation time is more than 5 minutes
-    if ((time() - filectime($file)) > 60) {  // 86400 = 60*60*24
-        unlink($file);
-    }
-}
-*/
 ?>
