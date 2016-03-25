@@ -54,9 +54,8 @@ for($i=0;$i<$pages;$i++)
   $img->setImageFormat('jpg');
   //save image file
   $img->writeImage($dir.$save_to);
-  ?><img src="<?php echo $dir.$save_to;?>"><?php
-
-
+  
+  $outImage[] = $save_to;
 
 }
 //Delete Original PDF File
@@ -70,10 +69,81 @@ unlink($dir.$pdf_file);
 }
 
 ?>
-<form action="" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload PDF" name="submit">
-</form>
-<?php
-?>
+<html
+<head>
+<title>PDF to JPG</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="well text-center">
+</div>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">PDF to JPG
+                <small>Convert your file right now!</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>&nbsp;</li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+			<?php
+            if($outImage){
+            foreach($outImage as $singleImage)
+            {
+               ?><div class="col-lg-4">
+               		<img class="img-responsive" src="<?php echo $dir.$singleImage;?>">
+				</div><?php
+            }
+            }
+            ?>
+        </div>
+        <div class="col-md-6">
+            <h2>Follow these steps:</h2>
+			<ol>
+            	<li>Upload your PDF file: 
+                <form action="" method="post" enctype="multipart/form-data">
+                <label class="file">
+                  <input type="file" name="fileToUpload" id="fileToUpload" required>
+                  <span class="file-custom"></span>
+                </label>
+                  <input type="submit" value="Upload PDF" name="submit">
+                </form>
+                </li>
+                <li>Only pdf files less than 5Mb allowed</li>
+                <li>Once the file is converted the thumbnails will appear on the left panel</li>
+                <li>Just <b>right-click</b> the image and select <b>"save image as..."</b></li>
+                <li>All images will be removed from server after 2 minutes</li>
+            </ol>
+        </div>
+
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>Author: <a href="http://andreandrade.us" target="_blank">Andre Andrade</a></li>
+            </ol>
+        </div>
+
+    </div>
+  </div>
+
+
+    
+</body>
+</html>
