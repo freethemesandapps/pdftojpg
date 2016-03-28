@@ -112,7 +112,9 @@ unlink($dir.$pdf_file);
             foreach($outImage as $singleImage)
             {
                ?><div class="col-lg-4">
-               		<img class="img-responsive" src="<?php echo $dir.$singleImage;?>">
+		    <a download="<?php echo $singleImage;?>" href="<?php echo $dir;?>" title="ImageName">	
+               		<img class="img-responsive img-thumbnail" src="<?php echo $dir.$singleImage;?>">
+		   </a>
 				</div><?php
             }
             }
@@ -132,7 +134,8 @@ unlink($dir.$pdf_file);
                 </li>
                 <li>Only pdf files less than 5Mb allowed</li>
                 <li>Once the file is converted the thumbnails will appear on the left panel</li>
-                <li>Just <b>right-click</b> the image and select <b>"save image as..."</b></li>
+                <li><b>Click</b> the image to download</li> 
+		<li>Or <b>right-click</b> the image and select <b>"save image as..."</b></li>
                 <li>All images will be removed from server after 2 minutes</li>
             </ol>
         </div>
