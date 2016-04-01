@@ -49,10 +49,12 @@ $pages = $imgCounter ->getNumberImages();
 for($i=0;$i<$pages;$i++)
 {
   $save_to  = 'image_'.rand().'.jpg';
-  $img = new imagick($dir.$pdf_file.'['.$i.']');
-  //set new format
+  $img = new imagick();
+  $img->setResolution(150, 150);
+  $img->readImage($dir.$pdf_file.'['.$i.']');
   $img->setImageFormat('jpg');
-  //save image file
+  #$img->setImageCompression(imagick::COMPRESSION_JPEG); 
+  #$img->setImageCompressionQuality(100);
   $img->writeImage($dir.$save_to);
   
   $outImage[] = $save_to;
